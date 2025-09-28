@@ -274,6 +274,14 @@ if [ "${1}" = "release" -o "${1}" = "mkimage" -o "${1}" = "noobs" ]; then
       echo "Running ${FOUND_PATH}"
       . ${FOUND_PATH}
     fi
+
+    for dtb in ${ROOT}/dtb_overrides/*.dtb; do
+      if [ -f ${dtb} ]; then
+        echo "Override: ${dtb}"
+        cp -PRf ${dtb} ${TARGET_IMG}/${IMAGE_NAME}/3rdparty/bootloader
+      fi
+    done
+
   fi
 
   #cp ${ROOT}/README* ${RELEASE_DIR}
