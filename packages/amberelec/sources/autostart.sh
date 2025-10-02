@@ -218,7 +218,7 @@ then
 fi
 
 rm -f "/storage/.config/device" 2>/dev/null
-if [ "$DEVICE" == "Anbernic RG351MP" ]; then
+if [ "$DEVICE" == "Anbernic RG351MP" ] || [ "$DEVICE" == "R36Plus" ]; then
   VOLT1=$(cat /sys/bus/iio/devices/iio:device0/in_voltage1_raw)
   VOLT2=$(cat /sys/bus/iio/devices/iio:device0/in_voltage2_raw)
   if (( ${VOLT2} < 500 )); then
@@ -232,7 +232,7 @@ if [ "$DEVICE" == "Anbernic RG351MP" ]; then
   fi
 fi
 
-if [ "$DEVICE" == "Anbernic RG351MP" ] || [ "$DEVICE" == "PowKiddy Magicx XU10" ]; then
+if [ "$DEVICE" == "Anbernic RG351MP" ] || [ "$DEVICE" == "PowKiddy Magicx XU10" ] || [ "$DEVICE" == "R36Plus" ]; then
 	amixer -c 0 cset iface=MIXER,name='Playback Path' SPK_HP
 fi
 
@@ -240,13 +240,13 @@ fi
 # - This is the shortest, totally silent .wav I could create with audacity - duration is .001 seconds
 aplay /usr/bin/emustation-config-init.wav
 
-if [ "$EE_DEVICE" == "RG552" ] || [[ "$EE_DEVICE" =~ RG351 ]]; then
+if [ "$EE_DEVICE" == "RG552" ] || [[ "$EE_DEVICE" =~ RG351 ]] || [[ "$EE_DEVICE" == "RK3326_720" ]]; then
   # For some reason the audio is being reseted to 100 at boot, so we reapply the saved settings here
   /usr/bin/odroidgoa_utils.sh vol $(get_ee_setting "audio.volume")
 fi
 
 # hide tools entries
-if [ "$EE_DEVICE" == "RG351MP" ]; then
+if [ "$EE_DEVICE" == "RG351MP" ] || [ "$EE_DEVICE" == "RK3326_720" ]; then
   if [ "$DEVICE" == "PowKiddy Magicx XU10" ]  || [ "$DEVICE" == "SZDiiER D007 Plus" ]; then
     xmlstarlet ed -L -u "//game[path='./display_fix.sh']/hidden" -v "true" /storage/.config/distribution/modules/gamelist.xml
     xmlstarlet ed -L -u "//game[path='./joyleds_conf.sh']/hidden" -v "false" /storage/.config/distribution/modules/gamelist.xml

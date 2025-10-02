@@ -210,7 +210,7 @@ EOF
 		aplay "/usr/share/sounds/Mallet.wav"
 	    fi
 	fi
-    elif [[ "${arch}" =~ RG351 ]]
+    elif [[ "${arch}" =~ RG351 ]] || [[ "${arch}" == RK3326_720 ]]
     then
 	case "${mode}" in
 	    "auto"|"speakers")

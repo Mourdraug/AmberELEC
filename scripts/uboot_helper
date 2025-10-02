@@ -43,6 +43,9 @@ devices = {
     'RG351MP' : {
       'rg351mp' : { 'dtb' : 'rk3326-rg351mp-linux.dtb', 'config' : 'odroidgoa_defconfig' },
     },
+    'RK3326_720' : {
+      'rk3326-720' : { 'dtb' : 'rk3326-720-linux.dtb', 'config' : 'odroidgoa_defconfig' },
+    },
     'RG552' : {
       'rg552' : { 'dtb' : 'rk3399-rg552-linux.dtb', 'config' : 'evb-rk3399_defconfig' },
     },

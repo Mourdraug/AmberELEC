@@ -151,8 +151,35 @@ jobs:
             export CUSTOM_VERSION="${{ steps.version.outputs.version }}"
             make DOCKER_WORK_DIR=/work docker-RG552
 
-  build-finalize:
+  build-rk3326_720:
     needs: [build-init, build-rg351p, build-rg351v, build-rg351mp, build-rg552]
+    timeout-minutes: 360
+    runs-on: main
+    steps:
+      - name: Get date for artifacts
+        id: date
+        run: echo "date=$(date +'%Y%m%d_%H%M')" >> $GITHUB_OUTPUT
+      - name: Get short SHA for artifacts
+        id: sha
+        run: echo "sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+      - name: Get dev (or draft release) version
+        id: version
+        run: |
+           set -e
+           echo "full name: ${{ github.event.repository.full_name }}"
+           if [[ "${{ github.event.client_payload.release_tag }}" != "" ]]; then
+               echo "version=${{ github.event.client_payload.release_tag }}" >> $GITHUB_OUTPUT
+           else
+               echo "version=dev-${{ steps.date.outputs.date }}-${{ steps.sha.outputs.sha }}" >> $GITHUB_OUTPUT
+           fi
+      - name: Build RK3326_720
+        run: |
+            set -e
+            export CUSTOM_VERSION="${{ steps.version.outputs.version }}"
+            make DOCKER_WORK_DIR=/work docker-RK3326_720
+
+  build-finalize:
+    needs: [build-init, build-rg351p, build-rg351v, build-rg351mp, build-rg552, build-rk3326_720]
     timeout-minutes: 360
     runs-on: main
     steps:
@@ -211,6 +238,13 @@ jobs:
           name: RG552-dev-main-${{ steps.date.outputs.date }}-${{steps.sha.outputs.sha}}
           path: |
             release/aarch64/RG552/
+      - name: Archive RK3326_720 (${{github.sha}})
+        if: github.event.client_payload.release_tag == ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: RK3326_720-dev-main-${{ steps.date.outputs.date }}-${{steps.sha.outputs.sha}}
+          path: |
+            release/aarch64/RK3326_720/
       - name: Create pre-release as draft at first to hide during uploads
         if: github.event.action == 'release-prerelease'
         uses: ncipollo/release-action@v1.13.0
@@ -272,6 +306,11 @@ jobs:
                 <td rowspan="7" align="center"><a href="https://github.com/${{ github.event.repository.owner.login }}/AmberELEC-prerelease/releases/download/${{ steps.version.outputs.version }}/AmberELEC-RG351MP.aarch64-${{ steps.version.outputs.version }}.tar">Link</a></td>
               </tr>
               <tr>
+                <td>RK3326_720</td>
+                <td rowspan="7" align="center"><a href="https://github.com/${{ github.event.repository.owner.login }}/AmberELEC-prerelease/releases/download/${{ steps.version.outputs.version }}/AmberELEC-RK3326_720.aarch64-${{ steps.version.outputs.version }}.img.gz">Link</a></td>
+                <td rowspan="7" align="center"><a href="https://github.com/${{ github.event.repository.owner.login }}/AmberELEC-prerelease/releases/download/${{ steps.version.outputs.version }}/AmberELEC-RK3326_720.aarch64-${{ steps.version.outputs.version }}.tar">Link</a></td>
+              </tr>
+              <tr>
                 <td rowspan="2">PowKiddy</td>
                 <td>RGB20S</td>
               </tr>
@@ -292,7 +331,7 @@ jobs:
             </table>
             <!--devices-->
 
-          artifacts: "release/aarch64/RG351P/*, release/aarch64/RG351V/*, release/aarch64/RG351MP/*, release/aarch64/RG552/*"
+          artifacts: "release/aarch64/RG351P/*, release/aarch64/RG351V/*, release/aarch64/RG351MP/*, release/aarch64/RG552/*, release/aarch64/RK3326_720/*"
           prerelease: true
           draft: true
           token: ${{ secrets.TRIGGER_BUILD_TOKEN }}
@@ -329,7 +368,7 @@ jobs:
               -`GITHUB ORG` = `351dev`
               -`GITHUB REPO` = `builds`
 
-          artifacts: "release/aarch64/RG351P/*, release/aarch64/RG351V/*, release/aarch64/RG351MP/*, release/aarch64/RG552/*"
+          artifacts: "release/aarch64/RG351P/*, release/aarch64/RG351V/*, release/aarch64/RG351MP/*, release/aarch64/RG552/*, release/aarch64/RK3326_720/*"
           prerelease: true
           draft: true
           token: ${{ secrets.TRIGGER_DEV_BUILD_TOKEN }}

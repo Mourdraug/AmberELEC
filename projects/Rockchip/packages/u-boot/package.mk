@@ -14,11 +14,12 @@ PKG_STAMP="${UBOOT_SYSTEM}"
 PKG_NEED_UNPACK="${PROJECT_DIR}/${PROJECT}/bootloader"
 [ -n "${DEVICE}" ] && PKG_NEED_UNPACK+=" ${PROJECT_DIR}/${PROJECT}/devices/${DEVICE}/bootloader"
 
-if [[ "${DEVICE}" =~ RG351 ]]; then
-  PKG_VERSION="d8ad98256d4913bf39153a404f5e26e94cfe8b14"
+if [[ "${DEVICE}" =~ RG351 ]] || [[ "${DEVICE}" == RK3326_720 ]]; then
+  PKG_VERSION="5741ef3916eadbce2057e9c5cebfd21a8724c935"
   PKG_GIT_CLONE_SINGLE="yes"
   PKG_GIT_CLONE_DEPTH="1"
-  PKG_URL="https://github.com/AmberELEC/uboot_rg351.git"
+  PKG_URL="https://github.com/Mourdraug/uboot_rg351.git"
+  PKG_GIT_CLONE_BRANCH="test2"
 elif [[ "${DEVICE}" =~ RG552 ]]; then
   PKG_VERSION="866ca972d6c3cabeaf6dbac431e8e08bb30b3c8e"
   PKG_GIT_CLONE_BRANCH=v2024.01
@@ -76,7 +77,7 @@ makeinstall_target() {
       cp -f ${PKG_BUILD}/arch/arm/dts/rg351p-uboot.dtb ${INSTALL}/usr/share/bootloader
     elif [ "${DEVICE}" == "RG351V" ]; then
       cp -f ${PKG_BUILD}/arch/arm/dts/rg351v-uboot.dtb ${INSTALL}/usr/share/bootloader
-    elif [ "${DEVICE}" == "RG351MP" ]; then
+    elif [ "${DEVICE}" == "RG351MP" ] || [ "${DEVICE}" == "RK3326_720" ]; then
       cp -f ${PKG_BUILD}/arch/arm/dts/rg351mp-uboot.dtb ${INSTALL}/usr/share/bootloader
     fi
 }

@@ -61,6 +61,9 @@ fi
 if [[ "$EE_DEVICE" == RG351V ]] || [[ "$EE_DEVICE" == RG351MP ]]; then
   params+=" --res 640 480"
 fi
+if [[ "$EE_DEVICE" == RK3326_720 ]]; then
+  params+=" --res 720 720"
+fi
 
 cd "${CONFIG_DIR}"
 /usr/bin/ecwolf ${params} > /tmp/logs/ecwolf.log 2>&1

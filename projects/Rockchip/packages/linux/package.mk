@@ -4,9 +4,9 @@
 # Copyright (C) 2021-present AmberELEC (https://github.com/AmberELEC)
 
 PKG_NAME="linux"
-if [[ "${DEVICE}" =~ RG351 ]]; then
-  PKG_VERSION="96070d6449a733145d85fc9edc28254f50ac3657"
-  PKG_URL="https://github.com/AmberELEC/kernel_rg351/archive/${PKG_VERSION}.tar.gz"
+if [[ "${DEVICE}" =~ RG351 ]] || [[ "${DEVICE}" == RK3326_720 ]]; then
+  PKG_VERSION="732e0e78ed8624eaffb48032677656b63d66d941"
+  PKG_URL="https://github.com/Mourdraug/kernel_rg351/archive/refs/heads/rk3326_720_support.tar.gz"
 elif [[ "${DEVICE}" =~ RG552 ]]; then
   PKG_VERSION="0c15ff851c1d24fac588bd4427bb45b9ab88f452"
   PKG_URL="https://github.com/AmberELEC/kernel_rg552/archive/${PKG_VERSION}.tar.gz"

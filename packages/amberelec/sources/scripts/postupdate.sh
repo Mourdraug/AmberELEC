@@ -127,7 +127,7 @@ if [[ "$LAST_UPDATE_VERSION" -le "20240506" ]]; then
   echo "wonderswancolor.bezel.overlay.grid=1" >> ${CONF}
   echo "wonderswancolor.bezel.overlay.shadow=1" >> ${CONF}
 
-  if [ "$(cat /usr/config/.OS_ARCH)" == "RG351V" ] || [ "$(cat /usr/config/.OS_ARCH)" == "RG351MP" ] || [ "$(cat /usr/config/.OS_ARCH)" == "RG552" ]; then
+  if [ "$(cat /usr/config/.OS_ARCH)" == "RG351V" ] || [ "$(cat /usr/config/.OS_ARCH)" == "RG351MP" ] || [ "$(cat /usr/config/.OS_ARCH)" == "RK3326_720" ] || [ "$(cat /usr/config/.OS_ARCH)" == "RG552" ]; then
     echo "gba.bezel.overlay.grid=1" >> ${CONF}
     echo "gba.bezel.overlay.shadow=1" >> ${CONF}
     echo "gbah.bezel.overlay.grid=1" >> ${CONF}
@@ -519,6 +519,8 @@ if [ "$(cat /usr/config/.OS_ARCH)" == "RG351P" ]; then
 	cp -f /usr/config/splash/splash-480l.png /storage/.config/emulationstation/resources/logo.png
 elif [ "$(cat /usr/config/.OS_ARCH)" == "RG351V" ] || [ "$(cat /usr/config/.OS_ARCH)" == "RG351MP" ]; then
 	cp -f /usr/config/splash/splash-640.png /storage/.config/emulationstation/resources/logo.png
+elif [ "$(cat /usr/config/.OS_ARCH)" == "RK3326_720" ]; then
+	cp -f /usr/config/splash/splash-720.png /storage/.config/emulationstation/resources/logo.png
 elif [ "$(cat /usr/config/.OS_ARCH)" == "RG552" ]; then
 	cp -f /usr/config/splash/splash-1920l.png /storage/.config/emulationstation/resources/logo.png
 fi

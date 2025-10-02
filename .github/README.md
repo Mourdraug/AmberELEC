@@ -55,6 +55,9 @@ Visit us on our Discord! https://discord.gg/W9F9xxRseu
     <td>R36S<sup>[3]</sup></td>
   </tr>
   <tr>
+    <td>R36PLUS<sup>[4]</sup></td>
+  </tr>
+  <tr>
     <td>SZDiiER</td>
     <td>D007 Plus<sup>[3]</sup></td>
   </tr>
@@ -65,6 +68,7 @@ Visit us on our Discord! https://discord.gg/W9F9xxRseu
 > <sup>[1]</sup> use the RG351P image<br>
 > <sup>[2]</sup> for RG351V and RG351MP devices with v2 display the use of the [pre-release image](https://github.com/AmberELEC/AmberELEC-prerelease/releases) is mandatory<br>
 > <sup>[3]</sup> use the RG351MP [pre-release image](https://github.com/AmberELEC/AmberELEC-prerelease/releases)
+> <sup>[4]</sup> use the RK3326_720 [pre-release image](https://github.com/AmberELEC/AmberELEC-prerelease/releases)
 
 > [!CAUTION]
 > Do not replace or rename any of the `.dtb` files after flashing a new image or updating from an older AmberELEC release.

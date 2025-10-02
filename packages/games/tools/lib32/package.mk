@@ -2,13 +2,14 @@
 # Copyright (C) 2022-present AmberELEC (https://github.com/AmberELEC)
 
 PKG_NAME="lib32"
-PKG_VERSION="41a3acad2c98b57c4b60d3c37e41dc899379fff2"
+PKG_VERSION="f14c518bbfa3b26445991ce767febea370c742cb"
 PKG_ARCH="aarch64"
-PKG_SITE="https://github.com/AmberELEC/lib32"
+PKG_SITE="https://github.com/Mourdraug/lib32"
 PKG_URL="${PKG_SITE}.git"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_LONGDESC="ARM 32bit bundles for aarch64"
 PKG_TOOLCHAIN="manual"
+PKG_GIT_CLONE_BRANCH="rk3326_720_support"
 
 makeinstall_target() {
   mkdir -p ${INSTALL}/usr/lib32

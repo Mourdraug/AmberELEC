@@ -17,6 +17,10 @@ if [[ "${DEVICE}" == RG552 ]]; then
   PKG_PATCH_DIRS="RG552-ui-patches"
 fi
 
+if [[ "${DEVICE}" == RK3326_720 ]]; then
+  PKG_PATCH_DIRS="RK3326_720-patches"
+fi
+
 pre_configure_target() {
   TARGET_CONFIGURE_OPTS=""
   PKG_CONFIGURE_OPTS_TARGET="--disable-qt \

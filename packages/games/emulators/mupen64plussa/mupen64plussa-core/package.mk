@@ -49,6 +49,8 @@ makeinstall_target() {
     cp ${PKG_DIR}/config/mupen64plus-RG351V.cfg ${INSTALL}/usr/local/share/mupen64plus/mupen64plus.cfg
   elif [ "${DEVICE}" = "RG351MP" ]; then
     cp ${PKG_DIR}/config/mupen64plus-RG351MP.cfg ${INSTALL}/usr/local/share/mupen64plus/mupen64plus.cfg
+  elif [ "${DEVICE}" = "RK3326_720" ]; then
+    cp ${PKG_DIR}/config/mupen64plus-RK3326_720.cfg ${INSTALL}/usr/local/share/mupen64plus/mupen64plus.cfg
   elif [ "${DEVICE}" = "RG552" ]; then
     cp ${PKG_DIR}/config/mupen64plus-RG552.cfg ${INSTALL}/usr/local/share/mupen64plus/mupen64plus.cfg
   fi

@@ -30,7 +30,7 @@ mkdir -p $RELEASE_DIR/3rdparty/bootloader
     cp -f $UBOOT_DTS_DIR/rg351p-uboot.dtb $RELEASE_DIR/3rdparty/bootloader
   elif [ "$DEVICE" == "RG351V" ]; then
     cp -f $UBOOT_DTS_DIR/rg351v-uboot.dtb $RELEASE_DIR/3rdparty/bootloader
-  elif [ "$DEVICE" == "RG351MP" ]; then
+  elif [ "$DEVICE" == "RG351MP" ] || [ "$DEVICE" == "RK3326_720" ]; then
     cp -f $UBOOT_DTS_DIR/rg351mp-uboot.dtb $RELEASE_DIR/3rdparty/bootloader
   fi
   

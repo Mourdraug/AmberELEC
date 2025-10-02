@@ -556,6 +556,25 @@ def set_settings(rom_name: str, core: str, platform: str, controllers: str, auto
             'arduboy': (0, 640, 1024, 512),          # x8
             'gameking': (0, 448, 1056, 704),         # x22
         }
+    elif device_name == "RK3326_720":
+        system_viewport = {
+            'standard': (1, 1, 719, 719),          # max-1
+            'gb': (0, 144, 640, 576),              # x4
+            'gbh': (0, 144, 640, 576),             # x4
+            'gbc': (0, 144, 640, 576),             # x4
+            'gbch': (0, 144, 640, 576),            # x4
+            'supervision': (0, 80, 640, 640),      # x4
+            'gamegear': (0, 144, 640, 576),        # x4
+            'ggh': (0, 144, 640, 576),             # x4
+            'pokemini': (0, 272, 672, 448),        # x7
+            'ngp': (0, 112, 640, 608),             # x4
+            'ngpc': (0, 112, 640, 608),            # x4
+            'wonderswan': (0, 288, 672, 432),      # x3
+            'wonderswancolor': (0, 288, 672, 432), # x3
+            'gba': (0, 240, 720, 480),             # x3
+            'gbah': (0, 240, 720, 480),            # x3
+            'arduboy': (0, 400, 640, 320),         # x5
+        }
 
     bezel_cfg = None
 
